@@ -2,18 +2,22 @@
 #include<math.h>
 int main() {
 	int a, b, c;
-	int decimal;
 	int kase = 0;
-	while (scanf("%d %d %d", &a, &b, &c) && a && b &&c) {
-		printf("Case %d: %d.", ++kase, (a / b)); //integral part
-		for (int i = 1; i < c; i++) {//decimal part
-			a = a * 10;
-			decimal = a / b ;
-			printf("%d", decimal % 10);
+	while (scanf("%d %d %d", &a, &b, &c) ) {
+        int decimal=0;
+		for (int i = 10; i < 100; i++) {//decimal part
+			if(i%3==a&&i%5==b&&i%7==c){
+            decimal=i;break;
+            }
 		}
-		//last decimal to rounding
-		decimal = round(double(a) * 10 / b);
-		printf("%d\n",decimal%10);
+        if(decimal==0)
+        {
+            printf("Case %d:No answer\n",++kase);
+        }
+		else{ //last decimal to rounding
+	      printf("Case %d: %d", ++kase, decimal); //integral part
+        }
+        decimal=0;
 	}
 	return 0;
 }
